@@ -2,7 +2,6 @@ const Customer = require('../../models/Customer');
 const h = require('../helpers');
 
 module.exports = (req, res) => {
-  console.log(req.body);
   const { name, email, password } = req.body;
 
   const customer = new Customer({
