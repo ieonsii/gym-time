@@ -1,7 +1,7 @@
-require("dotenv").config();
-const http = require("http");
-const mongoose = require("mongoose");
-const app = require("./app");
+require('dotenv').config();
+const http = require('http');
+const mongoose = require('mongoose');
+const app = require('./app');
 
 mongoose.Promise = global.Promise;
 mongoose
@@ -14,5 +14,5 @@ mongoose
     return httpServer.listen(8080);
   })
   .then(() => {
-    console.log("server started");
+    console.log('server started');
   });
