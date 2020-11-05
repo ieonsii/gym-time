@@ -5,7 +5,9 @@
   "author": "Adrian Leones",
   "license": "MIT",
   "scripts": {
-    "start": "node --require dotenv/config src/index.js dotenv_config_path=.env"
+    "start": "node --require dotenv/config src/index.js dotenv_config_path=.env",
+    "lint": "eslint src",
+    "format": "prettier --write \"src/**/*.{js,json}\""
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -16,5 +18,9 @@
     "helmet": "^4.2.0",
     "mongoose": "^5.10.12",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "prettier": "^2.1.2"
   }
 }
