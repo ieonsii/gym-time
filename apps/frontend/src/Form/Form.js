@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Form = () => {
-  const { register, handleSubmit } = useForm();
+  const { handleSubmit, register, control } = useForm();
   const onSubmit = handleSubmit((data) => alert(JSON.stringify(data)));
 
   const classes = useStyles();
@@ -32,49 +32,82 @@ const Form = () => {
       <Grid container spacing={3}>
         <form className={classes.form} onSubmit={onSubmit}>
           <Grid item xs={12}>
-            <TextField
-              className={classes.container}
-              id="standard-basic"
-              type="text"
+            <Controller
+              as={
+                <TextField
+                  className={classes.container}
+                  id="standard-basic"
+                  fullWidth
+                  type="text"
+                  name="name"
+                  ref={register}
+                  label="Full Name"
+                />
+              }
+              control={control}
               name="name"
-              ref={register}
-              label="Full Name"
+              defaultValue=""
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              className={classes.container}
-              id="standard-basic"
-              type="text"
+            <Controller
+              as={
+                <TextField
+                  className={classes.container}
+                  id="standard-basic"
+                  fullWidth
+                  type="text"
+                  name="email"
+                  ref={register}
+                  label="Email"
+                />
+              }
+              control={control}
               name="email"
-              ref={register}
-              label="Email"
+              defaultValue=""
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              className={classes.container}
-              id="standard-basic"
-              type="text"
+            <Controller
+              as={
+                <TextField
+                  className={classes.container}
+                  id="standard-basic"
+                  fullWidth
+                  type="text"
+                  name="password"
+                  ref={register}
+                  label="Password"
+                />
+              }
+              control={control}
               name="password"
-              ref={register}
-              label="Password"
+              defaultValue=""
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              className={classes.container}
-              id="standard-basic"
-              type="text"
+            <Controller
+              as={
+                <TextField
+                  className={classes.container}
+                  id="standard-basic"
+                  fullWidth
+                  type="text"
+                  name="confirmPassword"
+                  ref={register}
+                  label="Confirm Password"
+                />
+              }
+              control={control}
               name="confirmPassword"
-              ref={register}
-              label="Confirm Password"
+              defaultValue=""
             />
           </Grid>
           <Grid item xs={12}>
             <Button
               className={classes.container}
               variant="contained"
+              fullWidth
               color="primary"
               type="submit"
             >
