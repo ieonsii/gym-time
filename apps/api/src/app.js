@@ -61,8 +61,30 @@ app.use('/customers', routes.customer);
 //     console.error(error);
 //   });
 
-const sendgrid = require('./api/sendgrid');
+// const sendgrid = require('./api/sendgrid');
 
-sendgrid.sendConfirmationEmail({ email: 'leonsio192@gmail.com' });
+// sendgrid.sendConfirmationEmail({ email: 'leonsio192@gmail.com' });
+
+// const mailgun = require('./api/mailgun');
+
+// mailgun.sendConfirmationEmail({ email: 'leonsio192@gmail.com' });
+
+// const mailgun = require('mailgun-js');
+// const DOMAIN = 'sandbox7194f00246994cd1a2964b68b45c95ea.mailgun.org';
+// // const MAILGUN_API_KEY = ' 9adbf127940e11a67790cca31f7353a2-ea44b6dc-15b0aa66';
+
+// const mg = mailgun({
+//   apiKey: '9adbf127940e11a67790cca31f7353a2-ea44b6dc-15b0aa66',
+//   domain: DOMAIN,
+// });
+// const data = {
+//   from: 'leonsio192@gmail.com',
+//   to: 'leonsio192@gmail.com',
+//   subject: 'Hello',
+//   text: 'Testing some Mailgun awesomness!',
+// };
+// mg.messages().send(data, function (error, body) {
+//   console.log(body);
+// });
 
 module.exports = app;
