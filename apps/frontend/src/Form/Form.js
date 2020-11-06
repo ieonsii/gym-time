@@ -5,8 +5,8 @@ import {
   makeStyles,
   Container,
   Grid,
-  Button,
   TextField,
+  Button,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,14 +25,30 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = () => {
   const { handleSubmit, register, control } = useForm();
-  const onSubmit = handleSubmit((data) => alert(JSON.stringify(data)));
+
+  const signup = (data) => {
+    return fetch("http://localhost:8080/customers/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Create Success: ", data);
+      })
+      .catch((error) => {
+        console.error("ERROR: ", error);
+      });
+  };
 
   const classes = useStyles();
 
   return (
     <Container maxWidth="sm">
       <Grid container spacing={3}>
-        <form className={classes.form} onSubmit={onSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit(signup)}>
           <Grid item xs={12}>
             <Controller
               as={
