@@ -1,11 +1,13 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import {
+  makeStyles,
+  Container,
+  Grid,
+  Button,
+  TextField,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -39,7 +41,6 @@ const Form = () => {
                   id="standard-basic"
                   fullWidth
                   type="text"
-                  name="name"
                   ref={register}
                   label="Full Name"
                 />
@@ -57,7 +58,6 @@ const Form = () => {
                   id="standard-basic"
                   fullWidth
                   type="text"
-                  name="email"
                   ref={register}
                   label="Email"
                 />
@@ -75,7 +75,6 @@ const Form = () => {
                   id="standard-basic"
                   fullWidth
                   type="text"
-                  name="password"
                   ref={register}
                   label="Password"
                 />
@@ -93,7 +92,6 @@ const Form = () => {
                   id="standard-basic"
                   fullWidth
                   type="text"
-                  name="confirmPassword"
                   ref={register}
                   label="Confirm Password"
                 />
