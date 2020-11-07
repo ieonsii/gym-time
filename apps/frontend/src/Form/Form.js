@@ -53,9 +53,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = () => {
   const { handleSubmit, register, control, errors, watch } = useForm();
-  const [error, setError] = useState(false);
-  const [confirm, setConfirm] = useState(false);
+  const [error, setError] = useState(false); // show duplication error
+  const [confirm, setConfirm] = useState(false); // hide form when complete and show confirmation message
 
+  /**
+   * grab current value of password
+   */
   const password = useRef({});
   password.current = watch('password', '');
 
@@ -69,7 +72,6 @@ const Form = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Create Success: ', data);
         !data.success ? setError(true) : setConfirm(true);
       })
       .catch((error) => {
@@ -85,6 +87,8 @@ const Form = () => {
         <div className={classes.logo}>
           <img className={classes.logoImage} src={logo} alt="Gym Time Logo" />
         </div>
+
+        {/* Check if state is confirmed */}
         {!confirm ? (
           <form className={classes.box} onSubmit={handleSubmit(signup)}>
             <Grid item xs={12}>
