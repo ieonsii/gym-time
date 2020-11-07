@@ -1,6 +1,8 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 
+import { ErrorMessage } from "@hookform/error-message";
+
 import {
   makeStyles,
   Container,
@@ -24,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Form = () => {
-  const { handleSubmit, register, control } = useForm();
+  const { handleSubmit, register, control, errors } = useForm();
 
   const signup = (data) => {
     return fetch("http://localhost:8080/customers/", {
@@ -64,7 +66,9 @@ const Form = () => {
               control={control}
               name="name"
               defaultValue=""
+              rules={{ required: "Name is required." }}
             />
+            <ErrorMessage errors={errors} name="name" />
           </Grid>
           <Grid item xs={12}>
             <Controller
@@ -81,7 +85,9 @@ const Form = () => {
               control={control}
               name="email"
               defaultValue=""
+              rules={{ required: "Email is required." }}
             />
+            <ErrorMessage errors={errors} name="email" />
           </Grid>
           <Grid item xs={12}>
             <Controller
@@ -98,8 +104,10 @@ const Form = () => {
               control={control}
               name="password"
               defaultValue=""
+              rules={{ required: "Password is required." }}
             />
           </Grid>
+          <ErrorMessage errors={errors} name="password" />
           <Grid item xs={12}>
             <Controller
               as={
@@ -115,7 +123,9 @@ const Form = () => {
               control={control}
               name="confirmPassword"
               defaultValue=""
+              rules={{ required: "Password is required." }}
             />
+            <ErrorMessage errors={errors} name="confirmPassword" />
           </Grid>
           <Grid item xs={12}>
             <Button
