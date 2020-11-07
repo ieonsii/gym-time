@@ -3,15 +3,34 @@ import { useForm, Controller } from 'react-hook-form';
 
 import { ErrorMessage } from '@hookform/error-message';
 
+import logo from './logo.jpg';
+
 import {
   makeStyles,
   Container,
   Grid,
+  Card,
   TextField,
   Button,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+  logo: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    display: 'flex',
+    width: '100%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  logoImage: {
+    width: '100%',
+    maxWidth: '146px',
+    height: 'auto',
+    textAlign: 'center',
+    flexDirection: 'column',
+    margin: '0 auto',
+  },
   form: {
     padding: theme.spacing(2),
     textAlign: 'center',
@@ -22,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     margin: theme.spacing(2),
+  },
+  confirmation: {
+    margin: theme.spacing(2),
+    padding: theme.spacing(2),
   },
 }));
 
@@ -53,6 +76,9 @@ const Form = () => {
   return (
     <Container maxWidth="sm">
       <Grid container spacing={3}>
+        <div className={classes.logo}>
+          <img className={classes.logoImage} src={logo} alt="Gym Time Logo" />
+        </div>
         {!confirm ? (
           <form className={classes.form} onSubmit={handleSubmit(signup)}>
             <Grid item xs={12}>
@@ -145,10 +171,10 @@ const Form = () => {
             </Grid>
           </form>
         ) : (
-          <span>
-            "Thank you for signing up to Gym Time, please check your email for
-            your activation link!"
-          </span>
+          <Card className={classes.confirmation}>
+            Thank you for signing up to Gym Time, please check your email for
+            your activation link!
+          </Card>
         )}
       </Grid>
     </Container>
