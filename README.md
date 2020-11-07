@@ -10,7 +10,7 @@ Follow [official guide](https://docs.docker.com/docker-for-mac/install/) to inst
 
 This project requires NodeJS v14.7.0. [N](https://github.com/tj/n) or [NVM](https://github.com/nvm-sh/nvm) package can help to manage multiple versions on the same machine across other projects.
 
-[Yarn](https://classic.yarnpkg.com/lang/en/) should be use for packages management and script running.
+[Yarn](https://classic.yarnpkg.com/lang/en/) should be used for packages management and script running.
 
 ## Local Database
 
@@ -43,7 +43,7 @@ Root directory contains the main folder, `apps`. `apps` is for projects that can
 
 ## API
 
-Prior to starting the api app, the .env file will need to be setup in the api directory
+Prior to starting the `api` app, the `.env` file will need to be setup in the `api` directory
 
 ```
 MONGO_URI=The mongodb connection string
@@ -57,7 +57,7 @@ MAILGUN_DOMAIN=mail gun domain
 MAILGUN_FROM_ADDRESS=mailgun from address
 ```
 
-API in `apps` will then need to be installed via
+`api` in `apps` will then need to be installed via
 
 ```
 yarn install
@@ -71,7 +71,7 @@ yarn start
 
 ## Frontend
 
-Frontend in `apps` will need to be installed via
+`frontend` in `apps` will need to be installed via
 
 ```
 yarn install
@@ -87,8 +87,8 @@ yarn start
 
 ### API
 
-The API utilises `express` to post customer data after signing up with `mongoose`. During the sign up process it will send an email via `sendgrid` and if sendgrid api check is not successful it will attempt to send with `mailgun`
+The API utilises `express` to post customer data after signing up with `mongoose`. During the sign up process it will send an email via `sendgrid` and if sendgrid api check is not successful it will attempt to send with `mailgun`.
 
 ### Frontend
 
-The Frontend utilises `react` via `create-react-app`, styled with `material-ui`. `react-hook-form` is used to faciliate the form function with submitting and validation
+The Frontend utilises `react` via `create-react-app`, styled with `material-ui`. `react-hook-form` is used to faciliate the form function with submitting and validation.
