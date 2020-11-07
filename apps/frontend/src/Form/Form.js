@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 import { ErrorMessage } from '@hookform/error-message';
@@ -52,9 +52,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Form = () => {
-  const { handleSubmit, register, control, errors } = useForm();
+  const { handleSubmit, register, control, errors, watch } = useForm();
   const [error, setError] = useState(false);
   const [confirm, setConfirm] = useState(false);
+
+  const password = useRef({});
+  password.current = watch('password', '');
 
   const signup = (data) => {
     return fetch('http://localhost:8080/customers/', {
@@ -118,7 +121,13 @@ const Form = () => {
                 control={control}
                 name="email"
                 defaultValue=""
-                rules={{ required: 'Email is required.' }}
+                rules={{
+                  required: 'Email is required.',
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: 'Invalid email address',
+                  },
+                }}
               />
               <ErrorMessage errors={errors} name="email" />
               {error && <span>The email has been used already</span>}
@@ -138,7 +147,13 @@ const Form = () => {
                 control={control}
                 name="password"
                 defaultValue=""
-                rules={{ required: 'Password is required.' }}
+                rules={{
+                  required: 'Password is required.',
+                  minLength: {
+                    value: 8,
+                    message: 'Password must have at least 8 characters',
+                  },
+                }}
               />
             </Grid>
             <ErrorMessage errors={errors} name="password" />
@@ -157,7 +172,11 @@ const Form = () => {
                 control={control}
                 name="confirmPassword"
                 defaultValue=""
-                rules={{ required: 'Password is required.' }}
+                rules={{
+                  required: 'Password is required.',
+                  validate: (value) =>
+                    value === password.current || 'The passwords do not match',
+                }}
               />
               <ErrorMessage errors={errors} name="confirmPassword" />
             </Grid>
@@ -184,7 +203,7 @@ const Form = () => {
               variant="contained"
               fullWidth
               color="primary"
-              onClick={() => window.location.reload(false)}
+              onClick={() => window.location.reload()}
             >
               Back to sign up
             </Button>
