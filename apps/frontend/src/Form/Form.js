@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     margin: '0 auto',
   },
-  form: {
+  box: {
     padding: theme.spacing(2),
     textAlign: 'center',
     display: 'flex',
@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
   confirmation: {
     margin: theme.spacing(2),
     padding: theme.spacing(2),
+  },
+  message: {
+    padding: theme.spacing(1),
   },
 }));
 
@@ -80,7 +83,7 @@ const Form = () => {
           <img className={classes.logoImage} src={logo} alt="Gym Time Logo" />
         </div>
         {!confirm ? (
-          <form className={classes.form} onSubmit={handleSubmit(signup)}>
+          <form className={classes.box} onSubmit={handleSubmit(signup)}>
             <Grid item xs={12}>
               <Controller
                 as={
@@ -171,9 +174,20 @@ const Form = () => {
             </Grid>
           </form>
         ) : (
-          <Card className={classes.confirmation}>
-            Thank you for signing up to Gym Time, please check your email for
-            your activation link!
+          <Card className={classes.box}>
+            <p className={classes.message}>
+              Thank you for signing up to <strong>Gym Time</strong>, please
+              check your email (don't forget spam) for your activation link!
+            </p>
+            <Button
+              className={classes.box}
+              variant="contained"
+              fullWidth
+              color="primary"
+              onClick={() => window.location.reload(false)}
+            >
+              Back to sign up
+            </Button>
           </Card>
         )}
       </Grid>
