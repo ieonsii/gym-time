@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = () => {
   const { handleSubmit, register, control, errors, watch } = useForm();
-  const [error, setError] = useState(false); // show duplication error
+  const [error, setError] = useState(''); // show duplication error
   const [confirm, setConfirm] = useState(false); // hide form when complete and show confirmation message
 
   /**
@@ -72,10 +72,10 @@ const Form = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        !data.success ? setError(true) : setConfirm(true);
+        !data.success ? setError('duplicate') : setConfirm(true);
       })
       .catch((error) => {
-        setError(true);
+        setError('down');
       });
   };
 
@@ -134,7 +134,10 @@ const Form = () => {
                 }}
               />
               <ErrorMessage errors={errors} name="email" />
-              {error && <span>The email has been used already</span>}
+              {error === 'duplicate' && (
+                <span>The email has been used already</span>
+              )}
+              {error === 'down' && <span>Server is down</span>}
             </Grid>
             <Grid item xs={12}>
               <Controller
